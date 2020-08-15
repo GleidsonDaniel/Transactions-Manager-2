@@ -8,6 +8,8 @@ export const colors = {
   icons: '#212121',
   divider: '#BDBDBD',
   background: '#171717',
+  green: '#00E75C',
+  red: '#d64848',
 };
 
 export const darkColorTheme = {
