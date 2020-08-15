@@ -7,7 +7,6 @@ const Preload: React.FC = () => {
   return (
     <View>
       <Text>{translate('hello')}</Text>
-      <Text>Olá</Text>
     </View>
   );
 };

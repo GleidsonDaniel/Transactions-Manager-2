@@ -1,6 +1,6 @@
 const english = {
   hello: 'Hello World',
-  welcome: 'Bem vindo'
+  welcome: 'Welcome'
 }
 
 export default english;
