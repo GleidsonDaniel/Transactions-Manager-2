@@ -10,6 +10,26 @@ import Starter from '@/screens/Starter';
 import Home from '@/screens/Home';
 import Register from '@/screens/Register';
 import Login from '@/screens/Login';
+import {LeftHeaderIcon} from '@/components';
+import {colors} from '@/styles/colors';
+
+const headerStyle = {
+  headerStyle: {
+    backgroundColor: colors.background,
+    height: 70,
+    borderBottomWidth: 0,
+    shadowOffset: {
+      height: 0,
+    },
+    shadowRadius: 0,
+  },
+  headerTitleStyle: {
+    color: colors.primary_light,
+    fontSize: 18,
+    lineHeight: 27,
+    fontFamily: 'SourceSansPro-Bold',
+  },
+};
 
 const Routes: React.FC = () => {
   const Stack = createStackNavigator();
@@ -27,7 +47,11 @@ const Routes: React.FC = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name={typeRoutes.home} component={Home} />
-        <Stack.Screen name={typeRoutes.register} component={Register} />
+        <Stack.Screen
+          name={typeRoutes.register}
+          component={Register}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name={typeRoutes.login} component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
