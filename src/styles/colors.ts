@@ -9,3 +9,13 @@ export const colors = {
   divider: '#BDBDBD',
   background: '#171717',
 };
+
+export const darkColorTheme = {
+  ...colors,
+};
+
+export type DarkColorTheme = typeof darkColorTheme;
+
+declare module 'styled-components' {
+  export interface DefaultTheme extends DarkColorTheme {}
+}
