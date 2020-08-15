@@ -1,5 +1,7 @@
 export const typeRoutes = {
   preload: 'preload',
-  initial: 'initial',
+  starter: 'starter',
   home: 'home',
+  register: 'register',
+  login: 'login',
 };

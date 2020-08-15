@@ -4,8 +4,8 @@ import {useNavigation} from '@react-navigation/native';
 
 import {logo} from '@/assets';
 
-import {Container, AppName, Logo} from './styles';
 import {typeRoutes} from '@/routes/types';
+import {BasicContainer, Logo, AppName} from '@/styles/baseStyles';
 
 const Preload: React.FC = () => {
   const navigation = useNavigation();
@@ -18,7 +18,7 @@ const Preload: React.FC = () => {
       if (!!logged) {
         return navigation.navigate(typeRoutes.home);
       }
-      return navigation.navigate(typeRoutes.initial);
+      return navigation.navigate(typeRoutes.starter);
     }, 1000);
   };
 
@@ -27,10 +27,10 @@ const Preload: React.FC = () => {
   }, []);
 
   return (
-    <Container>
+    <BasicContainer>
       <Logo source={logo} resizeMode="contain" />
       <AppName>Transactions Manager</AppName>
-    </Container>
+    </BasicContainer>
   );
 };
 
