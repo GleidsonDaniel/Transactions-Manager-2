@@ -1,11 +1,18 @@
 import React, {useEffect} from 'react';
 import {useAsyncStorage} from '@react-native-community/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import styled from 'styled-components/native';
 
 import {logo} from '@/assets';
 
 import {typeRoutes} from '@/routes/types';
 import {BasicContainer, Logo, AppName} from '@/styles/baseStyles';
+
+const Container = styled.View`
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
 
 const Preload: React.FC = () => {
   const navigation = useNavigation();
@@ -28,8 +35,10 @@ const Preload: React.FC = () => {
 
   return (
     <BasicContainer>
-      <Logo source={logo} resizeMode="contain" />
-      <AppName>Transactions Manager</AppName>
+      <Container>
+        <Logo source={logo} resizeMode="contain" />
+        <AppName>Transactions Manager</AppName>
+      </Container>
     </BasicContainer>
   );
 };
