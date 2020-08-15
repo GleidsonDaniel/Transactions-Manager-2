@@ -1,10 +1,9 @@
 import styled from 'styled-components/native';
+import {TextInputMask} from 'react-native-masked-text';
 
 export const BasicContainer = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.background};
-  align-items: center;
-  justify-content: center;
   padding: 16px;
 `;
 
@@ -32,6 +31,7 @@ interface ILogo {
 export const Logo = styled.Image<ILogo>`
   width: ${({size}) => (size ? `${size}px` : '200px')};
   height: ${({size}) => (size ? `${size}px` : '200px')};
+  align-self: center;
 `;
 
 export const Button = styled.TouchableOpacity`
@@ -48,4 +48,48 @@ export const ButtonText = styled.Text`
   font-size: 14px;
   line-height: 20px;
   text-align: center;
+`;
+
+interface IMaskedInput {
+  isInvalid?: boolean;
+  marginBottom?: number;
+}
+
+export const MaskedInput = styled(TextInputMask)<IMaskedInput>`
+  padding: 0 16px 9px 16px;
+  background: transparent;
+  font-size: 25px;
+  line-height: 27px;
+  color: ${({theme}) => theme.primary_light};
+  font-family: 'SourceSansPro-Regular';
+  border-bottom-width: 1px;
+  border-bottom-color: ${({theme}) => theme.primary_light};
+  margin-bottom: ${({marginBottom}) =>
+    marginBottom ? `${marginBottom}px` : '40px'};
+  width: 100%;
+  text-align: center;
+`;
+
+export const BasicInput = styled.TextInput<IMaskedInput>`
+  padding: 0 16px 9px 16px;
+  background: transparent;
+  font-size: 25px;
+  line-height: 27px;
+  color: ${({theme}) => theme.primary_light};
+  font-family: 'SourceSansPro-Regular';
+  border-bottom-width: 1px;
+  border-bottom-color: ${({theme}) => theme.primary_light};
+  margin-bottom: ${({marginBottom}) =>
+    marginBottom ? `${marginBottom}px` : '40px'};
+  width: 100%;
+  text-align: center;
+`;
+
+export const ErrorText = styled.Text`
+  font-family: 'SourceSansPro-Regular';
+  font-size: 12px;
+  margin-top: -8px;
+  font-weight: bold;
+  color: ${({theme}) => theme.red};
+  margin-bottom: 8px;
 `;
