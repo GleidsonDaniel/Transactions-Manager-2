@@ -12,10 +12,12 @@ const Starter: React.FC = () => {
   const {navigate} = useNavigation();
   return (
     <BasicContainer>
-      <Logo source={logo} size={200} resizeMode="contain" />
+      <Logo source={logo} size={200} />
       <Presentation>{translate('presentationText')}</Presentation>
-      <Button onPress={() => navigate(typeRoutes.register)}>
-        <ButtonText>{translate('initial')}</ButtonText>
+      <Button
+        testID="initialButton"
+        onPress={() => navigate(typeRoutes.register)}>
+        <ButtonText testID="initialText">{translate('initial')}</ButtonText>
       </Button>
       <AlreadyHaveButton onPress={() => navigate(typeRoutes.login)}>
         <AlreadyHaveText>{translate('haveAccount')}</AlreadyHaveText>
