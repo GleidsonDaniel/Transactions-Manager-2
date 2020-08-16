@@ -64,10 +64,12 @@ const RegistrationForm: React.FC = () => {
 
         return removeFalsy(err);
       },
-      onSubmit: (values, bag) => {
+      onSubmit: values => {
         if (currentPosition === 3) {
+          () => {};
         } else {
           setCurrentPosition(currentPosition + 1);
+          () => {};
         }
       },
     },
@@ -83,6 +85,7 @@ const RegistrationForm: React.FC = () => {
       {currentPosition === 0 && (
         <>
           <MaskedInput
+            testID="cpfInput"
             value={values.cpf}
             autoCapitalize="none"
             placeholder="CPF"
@@ -91,13 +94,16 @@ const RegistrationForm: React.FC = () => {
             type={'cpf'}
             onSubmitEditing={handleSubmit}
           />
-          {!!errors.cpf && <ErrorText>{errors.cpf}</ErrorText>}
+          {!!errors.cpf && (
+            <ErrorText testID="cpfInputError">{errors.cpf}</ErrorText>
+          )}
         </>
       )}
       {currentPosition === 1 && (
         <>
           <BasicInput
             value={values.name}
+            testID="nameInput"
             placeholder={translate('name')}
             placeholderTextColor={colors.secondary_text}
             onSubmitEditing={handleSubmit}
@@ -105,12 +111,15 @@ const RegistrationForm: React.FC = () => {
               setFieldValue('name', text.replace(/[0-9]/g, ''))
             }
           />
-          {!!errors.name && <ErrorText>{errors.name}</ErrorText>}
+          {!!errors.name && (
+            <ErrorText testID="nameInputError">{errors.name}</ErrorText>
+          )}
         </>
       )}
       {currentPosition === 2 && (
         <>
           <MaskedInput
+            testID="passwordInput"
             value={values.password}
             autoCapitalize="none"
             placeholder={translate('password')}
@@ -122,12 +131,15 @@ const RegistrationForm: React.FC = () => {
             }}
             onSubmitEditing={handleSubmit}
           />
-          {!!errors.password && <ErrorText>{errors.password}</ErrorText>}
+          {!!errors.password && (
+            <ErrorText testID="passwordInputError">{errors.password}</ErrorText>
+          )}
         </>
       )}
       {currentPosition === 3 && (
         <>
           <MaskedInput
+            testID="confirmPasswordInput"
             value={values.confirmPassword}
             autoCapitalize="none"
             placeholder={translate('passwordConfirm')}
@@ -140,7 +152,9 @@ const RegistrationForm: React.FC = () => {
             onSubmitEditing={handleSubmit}
           />
           {!!errors.confirmPassword && (
-            <ErrorText>{errors.confirmPassword}</ErrorText>
+            <ErrorText testID="confirmPasswordInputError">
+              {errors.confirmPassword}
+            </ErrorText>
           )}
         </>
       )}
@@ -152,6 +166,7 @@ const RegistrationForm: React.FC = () => {
       </PaddingContainer>
       <PaddingContainer>
         <Button
+          testID="confirmButton"
           onPress={() => {
             handleSubmit();
           }}>
