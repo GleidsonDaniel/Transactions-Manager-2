@@ -2,10 +2,10 @@ import React from 'react';
 
 import {KeyboardAvoidingView, LeftHeaderIcon} from '@/components';
 import {translate} from '@/locales';
-import {BasicContainer} from '@/styles/baseStyles';
+import {BasicContainer, ScrollViewContainer} from '@/styles/baseStyles';
 
 import RegistrationForm from './RegistrationForm';
-import {Container, Disclaimer, HeaderContainer} from './styles';
+import {Disclaimer, HeaderContainer} from './styles';
 
 const Register: React.FC = () => {
   return (
@@ -14,10 +14,10 @@ const Register: React.FC = () => {
         <LeftHeaderIcon />
       </HeaderContainer>
       <KeyboardAvoidingView>
-        <Container>
+        <ScrollViewContainer>
           <Disclaimer>{translate('disclaimer')}</Disclaimer>
           <RegistrationForm />
-        </Container>
+        </ScrollViewContainer>
       </KeyboardAvoidingView>
     </BasicContainer>
   );

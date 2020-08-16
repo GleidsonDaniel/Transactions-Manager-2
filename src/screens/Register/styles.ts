@@ -2,16 +2,6 @@ import styled from 'styled-components/native';
 
 export const HeaderContainer = styled.View``;
 
-export const Container = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})`
-  flex: 1;
-`;
-
 export const Disclaimer = styled.Text`
   color: ${({theme}) => theme.primary_light};
   font-family: 'SourceSansPro-Regular';
