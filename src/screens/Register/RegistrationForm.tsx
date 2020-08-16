@@ -1,23 +1,53 @@
+import AsyncStorage from '@react-native-community/async-storage';
+import {useFormik} from 'formik';
 import React, {useState} from 'react';
+
+import {StepIndicator} from '@/components';
+import {User, useUser} from '@/contexts/user';
+import {showErrorAlert, showSuccessAlert} from '@/helpers/flashMessage';
+import isValidCPF from '@/helpers/isValidCpf';
+import removeFalsy from '@/helpers/removeFalsy';
+import {resetAndGo} from '@/helpers/resetScreen';
+import {translate} from '@/locales';
+import {typeRoutes} from '@/routes/types';
+import {createUser} from '@/services/realm';
+import {IUser} from '@/services/schemas';
 import {
-  MaskedInput,
+  BasicInput,
   Button,
   ButtonText,
   ErrorText,
-  BasicInput,
+  MaskedInput,
 } from '@/styles/baseStyles';
-import {StepIndicator} from '@/components';
-
-import {useFormik} from 'formik';
+import {colors} from '@/styles/colors';
 
 import {PaddingContainer} from './styles';
-import isValidCPF from '@/helpers/isValidCpf';
-import removeFalsy from '@/helpers/removeFalsy';
-import {translate} from '@/locales';
-import {colors} from '@/styles/colors';
 
 const RegistrationForm: React.FC = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
+  const {setContextUser} = useUser();
+
+  const setUser = async (user: User) => {
+    setContextUser(user);
+    await AsyncStorage.setItem('@user', JSON.stringify(user));
+  };
+
+  const handleCreateUser = async (user: IUser) => {
+    const data = await createUser(
+      {
+        cpf: user.cpf,
+        name: user.name,
+        password: user.password,
+      },
+      user => setUser(user),
+    );
+    if (!!data.success) {
+      showSuccessAlert(data.message);
+      return navigation.dispatch(resetAndGo(typeRoutes.home));
+    } else {
+      return showErrorAlert(data.message);
+    }
+  };
 
   const {values, handleSubmit, handleChange, errors, setFieldValue} = useFormik(
     {
@@ -66,7 +96,11 @@ const RegistrationForm: React.FC = () => {
       },
       onSubmit: values => {
         if (currentPosition === 3) {
-          () => {};
+          handleCreateUser({
+            cpf: parseInt(values.cpf, 10),
+            name: values.name,
+            password: parseInt(values.password, 10),
+          });
         } else {
           setCurrentPosition(currentPosition + 1);
           () => {};
@@ -165,11 +199,7 @@ const RegistrationForm: React.FC = () => {
         />
       </PaddingContainer>
       <PaddingContainer>
-        <Button
-          testID="confirmButton"
-          onPress={() => {
-            handleSubmit();
-          }}>
+        <Button testID="confirmButton" onPress={handleSubmit}>
           <ButtonText>{translate('continue')}</ButtonText>
         </Button>
       </PaddingContainer>

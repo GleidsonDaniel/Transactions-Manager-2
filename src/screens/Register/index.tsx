@@ -7,16 +7,16 @@ import {BasicContainer, ScrollViewContainer} from '@/styles/baseStyles';
 import RegistrationForm from './RegistrationForm';
 import {Disclaimer, HeaderContainer} from './styles';
 
-const Register: React.FC = () => {
+const Register: React.FC = ({navigation}) => {
   return (
     <BasicContainer>
       <HeaderContainer>
-        <LeftHeaderIcon />
+        <LeftHeaderIcon navigation={navigation} />
       </HeaderContainer>
       <KeyboardAvoidingView>
         <ScrollViewContainer>
           <Disclaimer>{translate('disclaimer')}</Disclaimer>
-          <RegistrationForm />
+          <RegistrationForm navigation={navigation} />
         </ScrollViewContainer>
       </KeyboardAvoidingView>
     </BasicContainer>
