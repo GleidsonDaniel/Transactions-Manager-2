@@ -10,7 +10,6 @@ import Starter from '@/screens/Starter';
 import Home from '@/screens/Home';
 import Register from '@/screens/Register';
 import Login from '@/screens/Login';
-import {LeftHeaderIcon} from '@/components';
 import {colors} from '@/styles/colors';
 
 const headerStyle = {
@@ -52,7 +51,11 @@ const Routes: React.FC = () => {
           component={Register}
           options={{headerShown: false}}
         />
-        <Stack.Screen name={typeRoutes.login} component={Login} />
+        <Stack.Screen
+          name={typeRoutes.login}
+          component={Login}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
