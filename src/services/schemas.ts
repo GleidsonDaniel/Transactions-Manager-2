@@ -5,7 +5,7 @@ export const PersonSchema = {
     name: {type: 'string', required: true},
     cpf: {type: 'int', required: true},
     password: {type: 'int', required: true},
-    balance: {type: 'int', default: 1000, required: false},
+    balance: {type: 'int', default: 10000, required: false},
     id: 'string',
   },
 };
