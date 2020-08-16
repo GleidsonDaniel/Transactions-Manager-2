@@ -13,6 +13,7 @@ const english = {
   passwordConfirm: 'Confirm the Password',
   continue: 'Continue',
   disclaimer: 'Before we start we need you to tell us some data',
+  logout: 'Logout',
 };
 
 export default english;
