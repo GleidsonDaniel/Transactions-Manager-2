@@ -8,18 +8,18 @@ import {logo} from '@/assets';
 
 import LoginForm from './LoginForm';
 
-const Register: React.FC = () => {
+const Register: React.FC = ({navigation}) => {
   return (
     <BasicContainer>
       <HeaderContainer>
-        <LeftHeaderIcon />
+        <LeftHeaderIcon navigation={navigation} />
       </HeaderContainer>
       <KeyboardAvoidingView>
         <ScrollViewContainer>
           <LogoContainer>
             <Logo source={logo} size={150} />
           </LogoContainer>
-          <LoginForm />
+          <LoginForm navigation={navigation} />
         </ScrollViewContainer>
       </KeyboardAvoidingView>
     </BasicContainer>

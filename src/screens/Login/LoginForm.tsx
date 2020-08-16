@@ -1,16 +1,45 @@
-import React, {useRef} from 'react';
-import {MaskedInput, Button, ButtonText, ErrorText} from '@/styles/baseStyles';
-
 import {useFormik} from 'formik';
+import React, {useRef} from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import {PaddingContainer} from './styles';
+import {useUser, User} from '@/contexts/user';
+import {showErrorAlert, showSuccessAlert} from '@/helpers/flashMessage';
 import isValidCPF from '@/helpers/isValidCpf';
 import removeFalsy from '@/helpers/removeFalsy';
 import {translate} from '@/locales';
+import {typeRoutes} from '@/routes/types';
+import {login} from '@/services/realm';
+import {Button, ButtonText, ErrorText, MaskedInput} from '@/styles/baseStyles';
 import {colors} from '@/styles/colors';
 
-const LoginForm: React.FC = () => {
+import {PaddingContainer} from './styles';
+
+const LoginForm: React.FC = ({navigation}) => {
   const passwordInputRef = useRef();
+  const {setContextUser} = useUser();
+
+  const setUser = async (user: User) => {
+    setContextUser(user);
+    await AsyncStorage.setItem('@user', JSON.stringify(user));
+  };
+
+  const handleLogin = async (loginParameters: {
+    cpf: string;
+    password: string;
+  }) => {
+    const data = await login(
+      loginParameters.cpf,
+      loginParameters.password,
+      user => setUser(user),
+    );
+    if (!!data.success) {
+      showSuccessAlert(data.message);
+      return navigation.dispatch(resetAndGo(typeRoutes.home));
+    } else {
+      showErrorAlert(data.message);
+    }
+  };
+
   const {values, handleSubmit, handleChange, errors, setFieldValue} = useFormik(
     {
       initialValues: {
@@ -34,7 +63,7 @@ const LoginForm: React.FC = () => {
         return removeFalsy(err);
       },
       onSubmit: values => {
-        // console.log(values);
+        handleLogin(values);
       },
     },
   );
@@ -72,11 +101,7 @@ const LoginForm: React.FC = () => {
         <ErrorText testID="passwordInputError">{errors.password}</ErrorText>
       )}
       <PaddingContainer>
-        <Button
-          testID="confirmButton"
-          onPress={() => {
-            handleSubmit();
-          }}>
+        <Button testID="confirmButton" onPress={handleSubmit}>
           <ButtonText>{translate('continue')}</ButtonText>
         </Button>
       </PaddingContainer>
