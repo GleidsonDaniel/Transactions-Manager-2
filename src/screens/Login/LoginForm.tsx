@@ -11,6 +11,7 @@ import {typeRoutes} from '@/routes/types';
 import {login} from '@/services/realm';
 import {Button, ButtonText, ErrorText, MaskedInput} from '@/styles/baseStyles';
 import {colors} from '@/styles/colors';
+import {resetAndGo} from '@/helpers/resetScreen';
 
 import {PaddingContainer} from './styles';
 

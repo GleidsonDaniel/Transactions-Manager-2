@@ -2,11 +2,10 @@ import React from 'react';
 
 import {logo} from '@/assets';
 import {translate} from '@/locales';
+import {typeRoutes} from '@/routes/types';
 import {BasicContainer, Button, ButtonText, Logo} from '@/styles/baseStyles';
 
 import {AlreadyHaveButton, AlreadyHaveText, Presentation} from './styles';
-import {useNavigation} from '@react-navigation/native';
-import {typeRoutes} from '@/routes/types';
 
 const Starter: React.FC = ({navigation}) => {
   return (

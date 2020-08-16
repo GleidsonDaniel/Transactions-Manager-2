@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
+import React, {useEffect} from 'react';
 import styled from 'styled-components/native';
 
 import {logo} from '@/assets';
-
-import {typeRoutes} from '@/routes/types';
-import {BasicContainer, Logo, AppName} from '@/styles/baseStyles';
-import {resetAndGo} from '@/helpers/resetScreen';
 import {useUser} from '@/contexts/user';
+import {resetAndGo} from '@/helpers/resetScreen';
+import {typeRoutes} from '@/routes/types';
+import {AppName, BasicContainer, Logo} from '@/styles/baseStyles';
 
 const Container = styled.View`
   align-items: center;
@@ -16,9 +15,10 @@ const Container = styled.View`
 `;
 
 const Preload: React.FC = ({navigation}) => {
-  const {setContextUser} = useUser();
+  const {setContextUser, setContextTransactions} = useUser();
   const handleUserStatus = async () => {
     const user = await AsyncStorage.getItem('@user');
+    const transactions = await AsyncStorage.getItem('@transactions');
     setTimeout(() => {
       if (!!JSON.parse(user)?.id) {
         setContextUser(JSON.parse(user));

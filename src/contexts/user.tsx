@@ -1,4 +1,5 @@
 import React, {createContext, useState, useContext} from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export interface User {
   name: string;
@@ -34,6 +35,7 @@ const UserProvider: React.FC = ({children}) => {
   }
 
   async function setContextUser(u: User) {
+    await AsyncStorage.setItem('@user', JSON.stringify(u));
     setUser(u);
   }
 

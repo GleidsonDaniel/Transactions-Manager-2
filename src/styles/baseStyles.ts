@@ -1,5 +1,5 @@
-import styled from 'styled-components/native';
 import {TextInputMask} from 'react-native-masked-text';
+import styled from 'styled-components/native';
 
 export const BasicContainer = styled.View`
   flex: 1;
