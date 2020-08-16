@@ -28,7 +28,9 @@ interface ILogo {
   size?: number;
 }
 
-export const Logo = styled.Image<ILogo>`
+export const Logo = styled.Image.attrs({
+  resizeMode: 'contain',
+})<ILogo>`
   width: ${({size}) => (size ? `${size}px` : '200px')};
   height: ${({size}) => (size ? `${size}px` : '200px')};
   align-self: center;
@@ -92,4 +94,13 @@ export const ErrorText = styled.Text`
   font-weight: bold;
   color: ${({theme}) => theme.red};
   margin-bottom: 8px;
+`;
+
+export const ScrollViewContainer = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    flex: 1,
+    alignItems: 'center',
+  },
+})`
+  flex: 1;
 `;
