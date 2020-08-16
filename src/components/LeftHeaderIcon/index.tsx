@@ -14,6 +14,7 @@ const LeftHeaderIcon: React.FC = () => {
   const {goBack} = useNavigation();
   return (
     <TouchableWithoutFeedback
+      testID="leftHeaderIcon"
       hitSlop={{top: 20, left: 20, bottom: 20, right: 20}}
       onPress={() => goBack()}>
       <Container>
