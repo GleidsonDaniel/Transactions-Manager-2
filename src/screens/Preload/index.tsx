@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useAsyncStorage} from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 
@@ -16,10 +16,8 @@ const Container = styled.View`
 
 const Preload: React.FC = () => {
   const navigation = useNavigation();
-  const {getItem} = useAsyncStorage('@logged');
-
   const handleUserStatus = async () => {
-    const logged = await getItem();
+    const logged = await AsyncStorage.getItem('@logged');
     // simulating loading the API to verify user data
     setTimeout(() => {
       if (!!logged) {
@@ -36,7 +34,7 @@ const Preload: React.FC = () => {
   return (
     <BasicContainer>
       <Container>
-        <Logo source={logo} resizeMode="contain" />
+        <Logo source={logo} />
         <AppName>Transactions Manager</AppName>
       </Container>
     </BasicContainer>
