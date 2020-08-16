@@ -1,8 +1,10 @@
+import uniqBy from 'lodash/uniqBy';
 import Realm from 'realm';
 import {v4 as uuidv4} from 'uuid';
-import {User, Transactions} from '@/contexts/user';
 
-import {PersonSchema, TransactionSchema, IUser, ITransaction} from './schemas';
+import {Transactions, User} from '@/contexts/user';
+
+import {ITransaction, IUser, PersonSchema, TransactionSchema} from './schemas';
 
 export const createUser = async (
   user: IUser,
@@ -42,7 +44,9 @@ export const login = async (
     .then(realm => {
       let users = realm.objects('Person');
       let filteredUser = users.filtered(
-        `cpf = ${cpf} && password = ${password}`,
+        `cpf = ${parseInt(cpf.replace(/[^0-9]/g, ''))} && password = ${parseInt(
+          password,
+        )}`,
       );
       if (!!filteredUser[0]) {
         onSuccess(JSON.parse(JSON.stringify(filteredUser[0])));
@@ -56,6 +60,28 @@ export const login = async (
     .catch(error => {
       return {success: false, message: 'Cpf ou senha incorretos'};
     });
+  return data;
+};
+
+export const getAllTransactions = async (
+  cpf: number,
+  onSuccess: (transaction: Transactions[]) => void,
+) => {
+  const data = await Realm.open({schema: [TransactionSchema]})
+    .then(realm => {
+      let transactionList = realm.objects('Transaction');
+      let filtered = transactionList
+        .filtered(`receiverCpf = ${cpf} OR senderCpf = ${cpf}`)
+        .sorted('date');
+      const objFiltered = Object.values(JSON.parse(JSON.stringify(filtered)));
+      if (objFiltered.length) {
+        onSuccess(uniqBy(objFiltered.reverse(), 'id'));
+        realm.close();
+      } else {
+        realm.close();
+      }
+    })
+    .catch(error => {});
   return data;
 };
 
@@ -100,13 +126,7 @@ export const createTransaction = async (
           );
         });
         let transactionList = realm.objects('Transaction');
-        let filteredTransactionList = transactionList.filtered(
-          `senderCpf = ${transaction.senderCpf}`,
-        );
-        onSuccess(
-          JSON.parse(JSON.stringify(sender[0])),
-          Array.from(JSON.parse(JSON.stringify(filteredTransactionList))),
-        );
+        onSuccess(JSON.parse(JSON.stringify(sender[0])));
         realm.close();
         return {
           success: true,
@@ -116,7 +136,7 @@ export const createTransaction = async (
         realm.close();
         return {
           success: false,
-          message: 'Usuário não encontrado na base de testes',
+          message: 'Usuário não encontrado na base de dados',
         };
       }
     })
