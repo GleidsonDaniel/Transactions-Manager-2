@@ -23,7 +23,7 @@ import {colors} from '@/styles/colors';
 
 import {PaddingContainer} from './styles';
 
-const RegistrationForm: React.FC = () => {
+const RegistrationForm: React.FC = ({navigation}) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const {setContextUser} = useUser();
 
@@ -97,7 +97,7 @@ const RegistrationForm: React.FC = () => {
       onSubmit: values => {
         if (currentPosition === 3) {
           handleCreateUser({
-            cpf: parseInt(values.cpf, 10),
+            cpf: parseInt(values.cpf.replace(/[^0-9]/g, '')),
             name: values.name,
             password: parseInt(values.password, 10),
           });
