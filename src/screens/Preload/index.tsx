@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 
 import {logo} from '@/assets';
 
 import {typeRoutes} from '@/routes/types';
 import {BasicContainer, Logo, AppName} from '@/styles/baseStyles';
+import {resetAndGo} from '@/helpers/resetScreen';
+import {useUser} from '@/contexts/user';
 
 const Container = styled.View`
   align-items: center;
@@ -14,14 +15,14 @@ const Container = styled.View`
   flex: 1;
 `;
 
-const Preload: React.FC = () => {
-  const navigation = useNavigation();
+const Preload: React.FC = ({navigation}) => {
+  const {setContextUser} = useUser();
   const handleUserStatus = async () => {
-    const logged = await AsyncStorage.getItem('@logged');
-    // simulating loading the API to verify user data
+    const user = await AsyncStorage.getItem('@user');
     setTimeout(() => {
-      if (!!logged) {
-        return navigation.navigate(typeRoutes.home);
+      if (!!JSON.parse(user)?.id) {
+        setContextUser(JSON.parse(user));
+        return navigation.dispatch(resetAndGo(typeRoutes.home));
       }
       return navigation.navigate(typeRoutes.starter);
     }, 1000);
