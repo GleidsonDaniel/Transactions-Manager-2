@@ -8,7 +8,7 @@ export const colors = {
   icons: '#212121',
   divider: '#BDBDBD',
   background: '#171717',
-  green: '#00E75C',
+  green: '#02c39a',
   red: '#d64848',
 };
 
