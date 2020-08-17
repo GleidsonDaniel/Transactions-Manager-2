@@ -20,14 +20,13 @@ import {
 
 const Home: React.FC = () => {
   const {user, transactions, setContextTransactions} = useUser();
-
   useFocusEffect(
     useCallback(() => {
       if (!!user?.cpf) {
         getAllTransactions(parseInt(user.cpf), t => setContextTransactions(t));
       }
       return () => {};
-    }, []),
+    }, [transactions]),
   );
 
   return (
