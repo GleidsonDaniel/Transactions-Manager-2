@@ -29,7 +29,7 @@ const Financial: React.FC = ({navigation}) => {
           </>
         ) : (
           <Button
-            testID="newTransaction"
+            testID="newTransactionButton"
             onPress={() => setFinancialFormVisible(!financialFormVisible)}>
             <ButtonText testID="newTransactionText">
               {translate('newTransaction')}

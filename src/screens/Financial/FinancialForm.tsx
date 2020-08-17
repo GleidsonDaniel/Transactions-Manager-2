@@ -215,8 +215,8 @@ const FinancialForm: React.FC<IFinancialForm> = ({cancelTransaction}) => {
         <Button testID="confirmButton" onPress={handleSubmit}>
           <ButtonText>{translate('continue')}</ButtonText>
         </Button>
-        <CancelButton onPress={cancelTransaction}>
-          <CancelText>{translate('cancel')}</CancelText>
+        <CancelButton testID="cancelButton" onPress={cancelTransaction}>
+          <CancelText testID="cancelText">{translate('cancel')}</CancelText>
         </CancelButton>
       </PaddingContainer>
     </>
