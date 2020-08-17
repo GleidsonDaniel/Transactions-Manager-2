@@ -1,5 +1,25 @@
 # Transactions Manager
 
+Project designed to validate a simple application for transactions between users.
+The basic proposal followed the following flow:
+> Create a transaction
+> Check the transaction lists
+> View the total balance resulting from the transactions.
+
+However, this flow generates some questions about security and architecture of the app:
+> Who can create a transaction?
+> Whose transaction for which?
+> Can other users see my transactions or balance?
+> How to validate a user?
+
+Considering these points raised, the app was made to answer these problems, conserving the initial scope of transactions between users. Thus creating the need for a user to create his user with identification and password, adding an architectural and security layer.
+Now the app follows the following flow:
+> User creates or logs in with his account
+> See your transactions sent or received.
+> Creates a transaction (Validates password, balance and if the other user exists in the bank).
+
+Note: Since there is no api available, the entire flow was done offline using the realm database, it is possible to create more than one user in the same app, and these users make transactions with each other using the same app, with the transactions being shown after the user logs in.
+
 ## 📷 Screenshots
 
 <div style="display:flex;" >
