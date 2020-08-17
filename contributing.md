@@ -46,10 +46,10 @@ The `import ... from '...';` at the top of files follow some rules:
 - Absolute imports before relative imports
 
 ```diff
-- import { Emission } from './Emission';
+- import { FinancialForm } from './FinancialForm';
 - import React from 'react';
 + import React from 'react';
-+ import { Emission } from './Emission';
++ import { FinancialForm } from './FinancialForm';
 ```
 
 - Absolute imports are sorted alphabetically by package name
@@ -64,19 +64,19 @@ The `import ... from '...';` at the top of files follow some rules:
 - Relative imports are reverse-sorted by import depth, meaning deeper imports appear first
 
 ```diff
-- import { Emission } from './Emission';
+- import { FinancialForm } from './FinancialForm';
 - import { calculation } from "../../utils";
 + import { calculation } from "../../utils";
-+ import { Emission } from './Emission';
++ import { FinancialForm } from './FinancialForm';
 ```
 
 - Imports at the same depth are sorted alphabetically by module name
 
 ```diff
-- import { Emission } from './Emission';
+- import { FinancialForm } from './FinancialForm';
 - import { About }  from './About';
 + import { About }  from './About';
-+ import { Emission } from './Emission';
++ import { FinancialForm } from './FinancialForm';
 ```
 
 - Destructured fields are ordered alphabetically
@@ -94,8 +94,8 @@ The `import ... from '...';` at the top of files follow some rules:
 - Props in React components are ordered alphabetically
 
 ```diff
-- <Emission style={{ width: 30 }} distance={20} />
-+ <Emission distance={20} style={{ width: 30 }} />
+- <FinancialForm style={{ width: 30 }} distance={20} />
++ <FinancialForm distance={20} style={{ width: 30 }} />
 ```
 
 

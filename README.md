@@ -7,7 +7,7 @@
   <img style="margin-left:10px;" src="https://i.ibb.co/fdrdw1V/Screen-Shot-2020-08-17-at-09-53-35.png" width="19%" >
   <img style="margin-left:10px;" src="https://i.ibb.co/qyfwz3k/Screen-Shot-2020-08-17-at-09-53-51.png" width="19%" >
   <img style="margin-left:10px;" src="https://i.ibb.co/5Kv63SJ/Screen-Shot-2020-08-17-at-09-55-57.png" width="19%" >
-    <img style="margin-left:10px;" src="https://i.ibb.co/Pxdg8m4/Screen-Shot-2020-08-17-at-09-56-04.png" width="19%" >
+  <img style="margin-left:10px;" src="https://i.ibb.co/Pxdg8m4/Screen-Shot-2020-08-17-at-09-56-04.png" width="19%" >
 </div>
 <div style="display:flex; margin-top:10px margin-bottom:10px" >
   <img style="margin-left:10px;" src="https://i.ibb.co/YN01VFY/Screen-Shot-2020-08-17-at-09-56-20.png" width="19%" >
@@ -41,6 +41,7 @@ To run on ios devices you need to run the code first
 ```
 $ npx pod-install
 ```
+
 <br />
 
 ## 👩🏾‍💻 Development
@@ -54,6 +55,7 @@ You can also check this manually by running:
 ```sh
 $ yarn lint
 ```
+
 <br />
 
 ## 🛠 Testing
@@ -75,9 +77,11 @@ Use the following to run unit tests in watch mode while developing:
 ```
 $ yarn test --watch
 ```
+
 <br />
 
 ## 📁 Folder Structure
+
 ```
 src
 ├── assets
@@ -142,10 +146,10 @@ src
 
 ## 👨‍💻 Contributors
 
-Have a look [here]() if you want to contribute!
+Have a look [here](https://github.com/GleidsonDaniel/transactions-manager/blob/develop/contributing.md) if you want to contribute!
 
 <br />
 
 ### ©️ Open source - licence
 
-Repository and contributions are under [GNU General Public License v3.0]()
+Repository and contributions are under [GNU General Public License v3.0](https://github.com/GleidsonDaniel/transactions-manager/blob/develop/LICENSE)
